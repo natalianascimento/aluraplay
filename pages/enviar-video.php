@@ -1,3 +1,22 @@
+<?php
+
+$dbPath = __DIR__ . '/../banco.sqlite';
+$pdo = new PDO("sqlite:$dbPath");
+
+if (isset($_GET['id'])) {
+    
+    $id = $_GET['id'];
+
+    $sql = 'SELECT * FROM videos WHERE id = :id';
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    $video = $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,19 +51,29 @@
 
     <main class="container">
 
-        <form class="container__formulario">
+        <form class="container__formulario" action="<?php echo isset($_GET['id']) ? "/editar-video.php" : "/novo-video.php"; ?>" method="post">
             <h2 class="formulario__titulo">Envie um vídeo!</h3>
-                <div class="formulario__campo">
+                
+            <div class="formulario__campo">
                     <label class="campo__etiqueta" for="url">Link embed</label>
+                    <?php if (isset($_GET['id'])): ?>
+                        <input name="url" class="campo__escrita" value="<?= $video['url'] ?>" required id='url' />
+                        <?php else: ?>
                     <input name="url" class="campo__escrita" required
                         placeholder="Por exemplo: https://www.youtube.com/embed/FAY1K2aUg5g" id='url' />
+                    <?php endif; ?>
                 </div>
 
 
                 <div class="formulario__campo">
                     <label class="campo__etiqueta" for="titulo">Titulo do vídeo</label>
+                    <?php if (isset($_GET['id'])): ?>
+                        <input name="titulo" class="campo__escrita" required value="<?= $video['title'] ?>" id='titulo' />
+                        <input name="id" type=hidden value="<?= $video['id'] ?>" id='titulo' />
+                        <?php else: ?>
                     <input name="titulo" class="campo__escrita" required placeholder="Neste campo, dê o nome do vídeo"
                         id='titulo' />
+                    <?php endif; ?>
                 </div>
 
                 <input class="formulario__botao" type="submit" value="Enviar" />

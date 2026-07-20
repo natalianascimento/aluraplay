@@ -26,7 +26,7 @@ body {
 
 .cabecalho {
     background-color: white;
-    position: fixed;
+    /* position: fixed;*/
     top: 0;
     height: 80px;
     width: 100%;
@@ -56,6 +56,10 @@ body {
     border-radius: 10%;
     background-color: var(--azul-escuro);
 
+}
+
+.mensagem__status {
+    background-color: red;
 }
 
 /* ESTILOS DA SEÇÃO VÍDEOS */
