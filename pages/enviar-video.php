@@ -4,8 +4,7 @@ $dbPath = __DIR__ . '/../banco.sqlite';
 $pdo = new PDO("sqlite:$dbPath");
 
 if (isset($_GET['id'])) {
-    
-    $id = $_GET['id'];
+    $id = filter_input(INPUT_GET, 'id');
 
     $sql = 'SELECT * FROM videos WHERE id = :id';
     $statement = $pdo->prepare($sql);
@@ -13,8 +12,6 @@ if (isset($_GET['id'])) {
     $statement->execute();
     $video = $statement->fetch(PDO::FETCH_ASSOC);
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +36,7 @@ if (isset($_GET['id'])) {
     <header>
 
         <nav class="cabecalho">
-            <a class="logo" href="../index.html"></a>
+            <a class="logo" href="../index.php"></a>
 
             <div class="cabecalho__icones">
                 <a href="./enviar-video.html" class="cabecalho__videos"></a>
@@ -52,7 +49,7 @@ if (isset($_GET['id'])) {
     <main class="container">
 
         <form class="container__formulario" action="<?php echo isset($_GET['id']) ? "/editar-video.php" : "/novo-video.php"; ?>" method="post">
-            <h2 class="formulario__titulo">Envie um vídeo!</h3>
+            <h2 class="formulario__titulo">Envie um vídeo!</h2>
                 
             <div class="formulario__campo">
                     <label class="campo__etiqueta" for="url">Link embed</label>
