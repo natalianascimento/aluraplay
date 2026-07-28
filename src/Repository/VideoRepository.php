@@ -22,7 +22,7 @@ class VideoRepository
         $result = $statement->execute();
 
         $id = $this->pdo->lastInsertId();
-        $videos->setId(intval($id));
+        $video->setId(intval($id));
 
         return $result;
     }
