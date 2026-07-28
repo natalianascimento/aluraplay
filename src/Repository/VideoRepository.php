@@ -43,7 +43,7 @@ class VideoRepository
         $statement = $this->pdo->prepare($sql);
 
         $statement->bindValue(':url', $video->url);
-        $statement->bindValue(':title', $video->titulo);
+        $statement->bindValue(':title', $video->title);
         $statement->bindValue(':id', $video->id, PDO::PARAM_INT);
 
         return $statement->execute();
@@ -60,6 +60,9 @@ class VideoRepository
 
         return array_map(
             function (array $videoData) {
+                if (is_null($videoData['title']) || $videoData['title'] == '' ) {
+                    $videoData['title'] = "Titulo vazio";
+                }
                 $video = new Video($videoData['url'], $videoData['title']);
                 $video->setId($videoData['id']);
 
