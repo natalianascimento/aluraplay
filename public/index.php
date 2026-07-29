@@ -3,6 +3,7 @@
 use Alura\Mvc\Repository\VideoRepository;
 use Alura\Mvc\Controller\VideoListController;
 use Alura\Mvc\Controller\FormVideoController;
+use Alura\Mvc\Controller\NovoVideoController;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -21,7 +22,8 @@ if (!array_key_exists('PATH_INFO' ,$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
         $controller->processaRequisicao();
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once __DIR__ . '/../novo-video.php';
+        $controller = new NovoVideoController($videoRepository);
+        $controller->processaRequisicao();
 
     }
 
