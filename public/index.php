@@ -5,6 +5,7 @@ use Alura\Mvc\Controller\VideoListController;
 use Alura\Mvc\Controller\FormVideoController;
 use Alura\Mvc\Controller\AdicionaVideoController;
 use Alura\Mvc\Controller\EditaVideoController;
+use Alura\Mvc\Controller\RemoveVideoController;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -40,7 +41,8 @@ if (!array_key_exists('PATH_INFO' ,$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
 
     }
 } elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
-    require_once __DIR__ . '/../remover-video.php';
+    $controller = new RemoveVideoController($videoRepository);
+    $controller->processaRequisicao();
     
 } else {
     http_response_code(404);
