@@ -3,7 +3,8 @@
 use Alura\Mvc\Repository\VideoRepository;
 use Alura\Mvc\Controller\VideoListController;
 use Alura\Mvc\Controller\FormVideoController;
-use Alura\Mvc\Controller\NovoVideoController;
+use Alura\Mvc\Controller\AdicionaVideoController;
+use Alura\Mvc\Controller\EditaVideoController;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -22,7 +23,7 @@ if (!array_key_exists('PATH_INFO' ,$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
         $controller->processaRequisicao();
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller = new NovoVideoController($videoRepository);
+        $controller = new AdicionaVideoController($videoRepository);
         $controller->processaRequisicao();
 
     }
@@ -34,7 +35,8 @@ if (!array_key_exists('PATH_INFO' ,$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
         $controller->processaRequisicao();
 
     } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once __DIR__ . '/../editar-video.php';
+        $controller = new EditaVideoController($videoRepository);
+        $controller->processaRequisicao();
 
     }
 } elseif ($_SERVER['PATH_INFO'] === '/remover-video') {
