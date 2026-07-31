@@ -1,6 +1,7 @@
 <?php
 
 use Alura\Mvc\Repository\VideoRepository;
+use Alura\Mvc\Controller\Controller;
 use Alura\Mvc\Controller\VideoListController;
 use Alura\Mvc\Controller\FormVideoController;
 use Alura\Mvc\Controller\AdicionaVideoController;
@@ -40,4 +41,5 @@ if (!array_key_exists('PATH_INFO' ,$_SERVER) || $_SERVER['PATH_INFO'] === '/') {
     $controller = new Error404Controller($videoRepository);
     
 }
+/** @var \Alura\Mvc\Controller\Controller $controller */
 $controller->processaRequisicao();
