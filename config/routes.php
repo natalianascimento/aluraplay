@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'GET|/' => \Alura\Mvc\Controller\VideoListController::class,
-    'GET|/novo-video' => \Alura\Mvc\Controller\FormVideoController::class,
-    'POST|/novo-video' => \Alura\Mvc\Controller\AdicionaVideoController::class,
-    'GET|/editar-video' => \Alura\Mvc\Controller\FormVideoController::class,
-    'POST|/editar-video' => \Alura\Mvc\Controller\EditaVideoController::class,
-    'GET|/remover-video' => \Alura\Mvc\Controller\RemoveVideoController::class,
+    'GET|/' => ['class' => \Alura\Mvc\Controller\VideoListController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'GET|/novo-video' => ['class' => \Alura\Mvc\Controller\FormVideoController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'POST|/novo-video' => ['class' => \Alura\Mvc\Controller\AdicionaVideoController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'GET|/editar-video' => ['class' => \Alura\Mvc\Controller\FormVideoController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'POST|/editar-video' => ['class' => \Alura\Mvc\Controller\EditaVideoController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'GET|/remover-video' => ['class' => \Alura\Mvc\Controller\RemoveVideoController::class, 'repository' => \Alura\Mvc\Repository\VideoRepository::class],
+    'GET|/login' => ['class' => \Alura\Mvc\Controller\LoginFormController::class, 'repository' => \Alura\Mvc\Repository\UserRepository::class],
+    'POST|/login' => ['class' => \Alura\Mvc\Controller\LoginController::class, 'repository' => \Alura\Mvc\Repository\UserRepository::class]
 ];
