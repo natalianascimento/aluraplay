@@ -13,6 +13,7 @@ class VideoListController implements Controller
 
    public function processaRequisicao(): void
    {
+        
         $videoList = $this->videoRepository->all();
 
         if (isset ($_GET['sucesso'])) {
