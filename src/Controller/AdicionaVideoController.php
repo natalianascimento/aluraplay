@@ -26,7 +26,17 @@ class AdicionaVideoController implements Controller
             exit();
         }
 
-        if ($this->repository->add(new Video($url, $titulo)) === false) {
+        $video = new Video($url, $titulo);
+
+        if ($_FILES['image']['error'] === UPLOAD_ERR_OK){
+            $fileName = uniqid('upload_') . "_" . $_FILES['image']['name'];
+            $filePath = __DIR__ . '/../../public/img/uploads/' . $fileName;
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $filePath);
+            $video->setFilePath($fileName);
+        }
+
+        if ($this->repository->add($video) === false) {
             header('Location: /?sucesso=0');
 
         } else {

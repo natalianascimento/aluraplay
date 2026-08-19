@@ -1,3 +1,4 @@
 banco.sqlite
 .vscode
 db/
+public/img/uploads/*
