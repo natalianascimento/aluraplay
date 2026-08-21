@@ -11,6 +11,7 @@ use Alura\Mvc\Controller\RemoveVideoController;
 use Alura\Mvc\Controller\Error404Controller;
 use Alura\Mvc\Controller\LoginController;
 use Alura\Mvc\Controller\LoginFormController;
+use Alura\Mvc\Controller\AdicionaCapaVideo;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 

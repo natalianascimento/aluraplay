@@ -28,12 +28,8 @@ class AdicionaVideoController implements Controller
 
         $video = new Video($url, $titulo);
 
-        if ($_FILES['image']['error'] === UPLOAD_ERR_OK){
-            $fileName = uniqid('upload_') . "_" . $_FILES['image']['name'];
-            $filePath = __DIR__ . '/../../public/img/uploads/' . $fileName;
-
-            move_uploaded_file($_FILES['image']['tmp_name'], $filePath);
-            $video->setFilePath($fileName);
+        if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            new AdicionaCapaVideo($video, $_FILES['image']);
         }
 
         if ($this->repository->add($video) === false) {
