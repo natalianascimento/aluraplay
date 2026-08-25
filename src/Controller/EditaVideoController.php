@@ -25,6 +25,7 @@ class EditaVideoController implements Controller
             header('Location: /?sucesso=0');
             exit();
         }
+        
         $titulo = filter_input(INPUT_POST, 'titulo');
         if ($titulo === false) {
             header('Location: /?sucesso=0');
