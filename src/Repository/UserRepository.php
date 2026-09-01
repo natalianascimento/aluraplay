@@ -22,4 +22,13 @@ class UserRepository
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function updatePasswordAlgorithm(User $password, $id)
+    {
+        $sql = 'UPDATE users SET password = ? WHERE id = ?';
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(1, password_hash($password, PASSWORD_ARGON2ID));
+        $statement->bindValue(2, $id);
+        $statement->execute();
+    }
+
 }

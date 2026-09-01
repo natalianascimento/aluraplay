@@ -21,11 +21,19 @@ class LoginController implements Controller
       $userData = $this->repository->searchUserByEmail($user);
       $correctPassword = password_verify($user->password, $userData['password']);
 
+      
+
       if ($correctPassword) {
+        if (password_needs_rehash($userData['password'], PASSWORD_ARGON2ID)) {
+        $this->repository->updateAlgorithm($user->password, $userData['id']);
+        }
+
         $_SESSION['logado'] = true;
         header('Location: /');
+        
       } else {
         header('Location: /login?sucesso=0');
+        
       }
    }
 }
